@@ -30,3 +30,24 @@ class LoginView(FormView):
         """
         login(self.request, form.get_user())
         super(LoginView, self).form_valid(form)
+
+
+class LogoutView(FormView):
+    """
+    View to logout the User.
+    """
+    def get_success_url(self):
+        """
+        Returns to url after logout.
+        """
+        next_url = self.request.GET(REDIRECT_FIELD_NAME, None)
+        if not next_url:
+            pass
+        return next_url
+
+    def get(self, request, *args, **kwargs):
+        """
+        Logout the user and returns to success url.
+        """
+        logout(request)
+        return redirect(self.get_success_url())
