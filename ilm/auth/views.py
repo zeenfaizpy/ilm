@@ -3,17 +3,22 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic import FormView
 from django.contrib.auth import REDIRECT_FIELD_NAME, login, logout
 
+from .forms import LoginForm
+
 class LoginView(FormView):
     """
     View to login the user.
     """
+    form_class = LoginForm
+    template_name = "login.html"
+    
     def get_success_url(self):
         """
         Return success url after login.
         """
         next_url = self.request.GET(REDIRECT_FIELD_NAME, None)
         if not next_url:
-            pass
+            next_url = reverse_lazy('home')
         return next_url
 
     def get(self, request, *args, **kwargs):
@@ -22,7 +27,7 @@ class LoginView(FormView):
         """
         if request.user.is_authenticated():
             redirect(self.get_success_url())
-        return super(LoginView, self).get(request, *args, *kwargs)
+        return super(LoginView, self).get(request, *args, **kwargs)
 
     def form_valid(self, form):
         """
