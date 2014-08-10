@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{{TITLE}}</title>
+        <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport">
+        <link href="{{STATIC_URL}}css/bootstrap.css" rel="stylesheet">
+    </head>
+    <body>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="span6">
+                {% load crispy_forms_tags %}
+                {% block content %}
+                <form action="" method="post">
+                    {% crispy form %}
+                    <input type="submit" class="btn btn-primary btn-large" value="Login">
+                </form>
+                {% endblock %} 
+            </div>
+        </div>  
+    </div>
+    <!-- <script src="{{STATIC_URL}}js/bootstrap.js"></script> -->
+  </body>
+</html>
