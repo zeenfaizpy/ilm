@@ -27,6 +27,14 @@ class Post(TimestampedModel):
     tags = models.ManyToManyField(Tag, related_name="posts")
     category = models.ForeignKey(Category, related_name="posts")
 
+    def save(self, *args, **kwargs):
+        """
+        Overriding save method to slugify.
+        """
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super(Post, self).save(*args, **kwargs)
+
     def __unicode__(self):
         """
         Returns the human readable object name.
