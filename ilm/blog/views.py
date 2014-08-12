@@ -1,3 +1,11 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 
-# Create your views here.
+from .models import Post, Tag, Category
+
+class ListPostsView(ListView):
+    """
+    View to list all posts.
+    """
+    model = Post
+    template_name = "list_posts.html"
