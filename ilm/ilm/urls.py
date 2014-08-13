@@ -8,4 +8,5 @@ urlpatterns = patterns('',
     # url(r'^$', 'ilm.views.home', name='home'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^auth/', include('auth.urls')),
+    url(r'^blog/', include('blog.urls')),
 )
