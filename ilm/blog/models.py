@@ -9,12 +9,24 @@ class Tag(models.Model):
     """
     name = models.CharField(max_length=120)
 
+    def __unicode__(self):
+        """
+        Returns the human readable object name.
+        """
+        return self.name
+
 
 class Category(models.Model):
     """
     Represents the category of posts.
     """
     name = models.CharField(max_length=120)
+
+    def __unicode__(self):
+        """
+        Returns the human readable object name.
+        """
+        return self.name
 
 
 class Post(TimestampedModel):
@@ -23,16 +35,16 @@ class Post(TimestampedModel):
     """
     title = models.CharField(max_length=120, blank=False)
     content = models.TextField()
-    slug = models.SlugField(max_length=120, unique=True)
-    tags = models.ManyToManyField(Tag, related_name="posts")
-    category = models.ForeignKey(Category, related_name="posts")
+    slug = models.SlugField(max_length=120, unique=True, blank=False)
+    tags = models.ManyToManyField(Tag, related_name="posts", blank=False)
+    category = models.ForeignKey(Category, related_name="posts", blank=False)
 
     def save(self, *args, **kwargs):
         """
         Overriding save method to slugify.
         """
-        if not self.slug:
-            self.slug = slugify(self.title)
+        # if not self.slug:
+        #     self.slug = slugify(self.title)
         super(Post, self).save(*args, **kwargs)
 
     def __unicode__(self):
