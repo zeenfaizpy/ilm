@@ -9,3 +9,4 @@ class ListPostsView(ListView):
     """
     model = Post
     template_name = "list_posts.html"
+    context_object_name = "posts"
