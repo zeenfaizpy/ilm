@@ -1,5 +1,5 @@
 <ul>
     {% for item in posts %}
-    <li>{{ item.title }}</li>
+    <li><a href="{% url 'detail_post' slug=item.slug %}">{{ item.title }}</a></li>
     {% endfor %}
 </ul>
