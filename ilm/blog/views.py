@@ -10,3 +10,10 @@ class ListPostsView(ListView):
     model = Post
     template_name = "list_posts.html"
     context_object_name = "posts"
+
+class DetailPostView(DetailView):
+    """
+    View to detail all posts.
+    """
+    model = Post
+    template_name = "detail_post.html"
