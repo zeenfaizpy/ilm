@@ -47,6 +47,11 @@ class Post(TimestampedModel):
         #     self.slug = slugify(self.title)
         super(Post, self).save(*args, **kwargs)
 
+    def get_absolute_url(self):
+        """
+        """
+        return reverse_lazy('detail_post', kwargs={'slug': self.slug})
+
     def __unicode__(self):
         """
         Returns the human readable object name.
