@@ -1,3 +1,4 @@
+<a href="{% url 'post_year_archive' year=2014 %}">Post Archive</a>
 <ul>
     {% for item in posts %}
     <li><a href="{% url 'detail_post' slug=item.slug %}">{{ item.title }}</a></li>
